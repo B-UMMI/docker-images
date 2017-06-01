@@ -23,4 +23,12 @@ RUN ./configure CC='gcc -march=broadwell'
 WORKDIR /NGStools/ncbi-blast-2.6.0+-src/c++/ReleaseMT/build/
 RUN make all_r
 
+# Clean
+RUN apt-get remove -y wget
+RUN apt-get remove -y unzip
+RUN apt-get remove -y gcc
+RUN apt-get remove -y g++
+RUN apt-get remove -y make
+RUN apt-get autoclean -y
+
 ENV PATH="/NGStools/ncbi-blast-2.6.0+-src/c++/ReleaseMT/bin:${PATH}"
