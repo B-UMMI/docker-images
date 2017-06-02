@@ -6,5 +6,5 @@ For LOBO cluster performance testing.
 Usage
 -----
 
-    shifterimg pull miguelpmachado/blast:2.6.0-binaries
-    shifter --image=miguelpmachado/blast:2.6.0-binaries blastn -help
+    shifterimg pull ummidock/blast:2.6.0-binaries
+    shifter --image=ummidock/blast:2.6.0-binaries blastn -help
