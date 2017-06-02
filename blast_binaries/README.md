@@ -1,7 +1,7 @@
 # docker-blast+
 
-Docker container with a [Blast+](https://blast.ncbi.nlm.nih.gov/Blast.cgi) software binaries.
-For LOBO cluster performance testing.
+Docker container with a [Blast+](https://blast.ncbi.nlm.nih.gov/Blast.cgi) software binaries.  
+For LOBO cluster performance testing **ONLY**.
 
 Usage
 -----
