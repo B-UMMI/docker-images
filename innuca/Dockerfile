@@ -10,3 +10,6 @@ RUN apt-get install -y tar
 
 RUN wget ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/2.6.0/ncbi-blast-2.6.0+-x64-linux.tar.gz
 RUN tar xf ncbi-blast-2.6.0+-x64-linux.tar.gz
+RUN rm ncbi-blast-2.6.0+-x64-linux.tar.gz
+
+ENV PATH="/NGStools/ncbi-blast-2.6.0+/bin:${PATH}"
