@@ -19,4 +19,9 @@ ENV PATH="/NGStools/ncbi-blast-2.6.0+/bin:${PATH}"
 RUN apt-get upgrade -y perl && apt-get install -y libmoo-perl liblist-moreutils-perl
 
 # MLST
-RUN wget https://github.com/tseemann/mlst/archive/2.9.tar.gz && tar xf 2.9.tar.gz
+RUN wget https://github.com/tseemann/mlst/archive/2.9.tar.gz && tar xf 2.9.tar.gz && rm 2.9.tar.gz
+
+ENV PATH="/NGStools/mlst-2.9/bin:${PATH}"
+
+# Update MLST DB
+CMD cd /NGStools/mlst-2.9/scripts && ./mlst-download_pub_mlst | bash > mlst-download_pub_mlst.stdout_stderr.txt 2>&1 && rm -r /NGStools/mlst-2.9/db/pubmlst/ && mv pubmlst/ /NGStools/mlst-2.9/db/ && ./mlst-make_blast_db
