@@ -16,7 +16,7 @@ ENV PATH="/NGStools/ncbi-blast-2.6.0+/bin:${PATH}"
 
 # Dependencies
 # Perl lib
-RUN apt-get upgrade perl && apt-get install -y libmoo-perl liblist-moreutils-perl
+RUN apt-get upgrade -y perl && apt-get install -y libmoo-perl liblist-moreutils-perl
 
 # MLST
 RUN wget https://github.com/tseemann/mlst/archive/2.9.tar.gz && tar xf 2.9.tar.gz
