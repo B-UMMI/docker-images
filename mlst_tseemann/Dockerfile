@@ -24,4 +24,5 @@ RUN wget https://github.com/tseemann/mlst/archive/2.9.tar.gz && tar xf 2.9.tar.g
 ENV PATH="/NGStools/mlst-2.9/bin:${PATH}"
 
 # Update MLST DB
-ENTRYPOINT cd /NGStools/mlst-2.9/scripts && ./mlst-download_pub_mlst | bash > mlst-download_pub_mlst.stdout_stderr.txt 2>&1 && rm -r /NGStools/mlst-2.9/db/pubmlst/ && mv pubmlst/ /NGStools/mlst-2.9/db/ && ./mlst-make_blast_db
+# Maybe remove the last bash
+ENTRYPOINT cd /NGStools/mlst-2.9/scripts && ./mlst-download_pub_mlst | bash > mlst-download_pub_mlst.stdout_stderr.txt 2>&1 && rm -r /NGStools/mlst-2.9/db/pubmlst/ && mv pubmlst/ /NGStools/mlst-2.9/db/ && ./mlst-make_blast_db > mlst-make_blast_db.stdout_stderr.txt 2>&1 && bash
