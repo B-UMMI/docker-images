@@ -13,5 +13,5 @@ RUN wget ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/2.6.0/ncbi-blast-2.
 
 ENV PATH="/NGStools/ncbi-blast-2.6.0+/bin:${PATH}"
 
-RUN apt-get remove -y wget tar
+RUN apt-get remove -y wget
 RUN apt-get autoclean -y
