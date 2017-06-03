@@ -16,12 +16,14 @@ ENV PATH="/NGStools/ncbi-blast-2.6.0+/bin:${PATH}"
 
 # Dependencies
 # Perl lib
-RUN apt-get upgrade -y perl && apt-get install -y libmoo-perl liblist-moreutils-perl
+RUN apt-get upgrade -y perl && apt-get install -y libmoo-perl liblist-moreutils-perl file
 
 # MLST
 RUN wget https://github.com/tseemann/mlst/archive/2.9.tar.gz && tar xf 2.9.tar.gz && rm 2.9.tar.gz
 
 ENV PATH="/NGStools/mlst-2.9/bin:${PATH}"
+
+RUN apt-get autoclean -y
 
 # Update MLST DB
 # Maybe remove the last bash
