@@ -7,13 +7,15 @@ RUN apt-get update
 
 # Dependencies
 # Linuxbrew
-RUN apt-get install -y build-essential curl file git python-setuptools ruby
-RUN git clone https://github.com/Linuxbrew/brew.git ~/.linuxbrew
-ENV PATH="$HOME/.linuxbrew/bin:${PATH}"
-ENV MANPATH="$(brew --prefix)/share/man:${MANPATH}"
-ENV INFOPATH="$(brew --prefix)/share/info:${INFOPATH}"
+RUN apt-get install -y build-essential curl file git python-setuptools ruby util-linux-locales
+RUN locale-gen en_US.UTF-8 && update-locale
+RUN git clone https://github.com/Linuxbrew/brew.git /NGStools/linuxbrew
+ENV PATH="/NGStools/linuxbrew/bin:${PATH}"
+ENV MANPATH="/NGStools/linuxbrew/share/man:${MANPATH}"
+ENV INFOPATH="/NGStools/linuxbrew/share/info:${INFOPATH}"
 
 # ReMatCh
+USER rematch
 RUN brew tap tseemann/homebrew-bioinformatics-linux && brew install rematch
 
 CMD rematch --help
