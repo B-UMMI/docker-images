@@ -8,7 +8,4 @@ RUN apt-get update
 # Dependencies
 # Linuxbrew
 RUN apt-get install -y build-essential curl file git python-setuptools ruby
-
-RUN brew tap tseemann/homebrew-bioinformatics-linux && brew install rematch
-
-CMD rematch --help
+RUN ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install)"
