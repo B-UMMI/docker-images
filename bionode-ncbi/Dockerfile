@@ -3,7 +3,7 @@ FROM ubuntu:16.04
 MAINTAINER Bruno Gonçalves, bfgoncalves@medicina.ulisboa.pt
 
 #SET WORKDIR
-WORKDIR /bionode/
+WORKDIR /NGStools/
 #INSTALL DEPENDENCIES
 RUN apt-get update
 RUN apt-get install -y curl sudo
