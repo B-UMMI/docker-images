@@ -6,8 +6,8 @@ MAINTAINER Bruno Gonçalves, bfgoncalves@medicina.ulisboa.pt
 RUN apt-get update
 RUN apt-get -y install unzip wget gcc g++ libtbb-dev
 
-WORKDIR /NGSTOOLS/
-ENV work_dir="/NGSTOOLS/bowtie2-2.3.2"
+WORKDIR /NGStools/
+ENV work_dir="/NGStools/bowtie2-2.3.2"
 
 RUN wget https://downloads.sourceforge.net/project/bowtie-bio/bowtie2/2.3.2/bowtie2-2.3.2-linux-x86_64.zip
 RUN unzip bowtie2-2.3.2-linux-x86_64.zip
