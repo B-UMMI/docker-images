@@ -1,6 +1,6 @@
 #DOCKERFILE FOR BIONODE-WATERMILL
 FROM docker-images/bionode-ncbi
-MAINTAINER Tiago Jesus, tiagojesuss@medicina.ulisboa.pt
+MAINTAINER Tiago Jesus, tiagojesus@medicina.ulisboa.pt
 
 #SET WORKDIR
 #WORKDIR /bionode/ #inherited from docker-images/bionode-ncbi
