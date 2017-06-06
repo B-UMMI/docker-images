@@ -7,3 +7,4 @@ UMMI docker images that are available from Docker Hub:
 * [bionode-watermill](https://github.com/B-UMMI/docker-images/tree/master/bionode-watermill)
 * [bowtie2](https://github.com/B-UMMI/docker-images/tree/master/bowtie2)
 * [BWA](https://github.com/B-UMMI/docker-images/tree/master/BWA)
+* [sratoolkit](https://github.com/B-UMMI/docker-images/tree/master/fastq-dump)
