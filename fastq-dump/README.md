@@ -1,6 +1,6 @@
-# docker-bionode
+# docker-sratoolkit
 
-Docker container with NodeJS and bionode for LOBO cluster.
+Docker container with sratoolkit for LOBO cluster.
 
 Usage
 -----
