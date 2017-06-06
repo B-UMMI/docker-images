@@ -13,6 +13,8 @@ RUN apt-get update
 RUN apt-get install -y make cpanminus
 # Bio Perl
 RUN cpanm Bio::Perl
+# Java
+RUN apt-get install -y default-jre
 # For Linuxbrew
 RUN apt-get install -y build-essential curl file git python-setuptools ruby locales
 RUN locale-gen en_US.UTF-8 && update-locale
@@ -23,8 +25,6 @@ RUN git clone https://github.com/Linuxbrew/brew.git /NGStools/linuxbrew
 ENV PATH="/NGStools/linuxbrew/bin:${PATH}"
 ENV MANPATH="/NGStools/linuxbrew/share/man:${MANPATH}"
 ENV INFOPATH="/NGStools/linuxbrew/share/info:${INFOPATH}"
-# Java
-RUN apt-get install -y default-jre
 
 # Snippy
 RUN brew tap homebrew/science && brew tap tseemann/homebrew-bioinformatics-linux && brew install snippy
