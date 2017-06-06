@@ -1,4 +1,4 @@
-# docker-bowtie2
+# docker-bwa
 
 Docker container with a [BWA](http://bio-bwa.sourceforge.net/) software.
 
