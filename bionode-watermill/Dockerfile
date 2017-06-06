@@ -11,6 +11,10 @@ RUN apt-get install -y git
 #CLONE BIONODE-WATERMILL FROM GIT HUB
 RUN git clone https://github.com/bionode/bionode-watermill.git
 
+#CHANGE DIRECTORY TO BIONODE-WATERMILL
+
+RUN cd bionode-watermill
+
 #INSTALL WATERMILL WITHIN GIT DIRECTORY
 RUN npm install
 RUN npm link
