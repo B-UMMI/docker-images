@@ -38,4 +38,4 @@ RUN apt-get autoclean -y
 
 WORKDIR /data/
 
-CMD snippy --help
+# CMD snippy --help
