@@ -1,5 +1,6 @@
 #DOCKERFILE FOR BIONODE-WATERMILL
-FROM docker-images/bionode-ncbi
+#FROM docker-images/bionode-ncbi
+FROM ubuntu:16.04
 MAINTAINER Tiago Jesus, tiagojesus@medicina.ulisboa.pt
 
 #SET WORKDIR
