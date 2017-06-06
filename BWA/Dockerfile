@@ -18,6 +18,3 @@ WORKDIR ./bwa-0.7.15
 #RUN MAKE AND ADD TO PATH
 RUN make
 ENV PATH="/NGStools/bwa-0.7.15:${PATH}"
-
-#TEST RUN
-RUN bwa
