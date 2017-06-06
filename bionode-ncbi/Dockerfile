@@ -4,6 +4,7 @@ MAINTAINER Bruno Gonçalves, bfgoncalves@medicina.ulisboa.pt
 
 #SET WORKDIR
 WORKDIR /bionode/
+
 #INSTALL DEPENDENCIES
 RUN apt-get update
 RUN apt-get install -y curl sudo
@@ -11,7 +12,5 @@ RUN apt-get install -y curl sudo
 RUN curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
 RUN apt-get install -y nodejs
 RUN npm install bionode -g
-
-RUN bionode-ncbi
 
 
