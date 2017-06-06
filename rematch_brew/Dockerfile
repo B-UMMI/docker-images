@@ -23,4 +23,8 @@ ENV INFOPATH="/NGStools/linuxbrew/share/info:${INFOPATH}"
 # ReMatCh
 RUN brew tap tseemann/homebrew-bioinformatics-linux && brew install rematch
 
+USER root
+RUN apt-get remove -y build-essential curl file git python-setuptools ruby locales
+RUN apt-get autoclean -y
+
 CMD rematch --help
