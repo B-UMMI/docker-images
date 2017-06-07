@@ -11,5 +11,5 @@ You can download and run this image using the following commands:
 
     # For GUI
     docker run --rm -u $(id -u):$(id -g) -it -v /local/folder/data:/data/ ummidock/mauve:2015-02-13 Mauve
-    # For reordering contigs from the command-line
+    # For reordering contigs from the command-line (use fasta references)
     docker run --rm -u $(id -u):$(id -g) -it -v /local/folder/data:/data/ ummidock/mauve:2015-02-13 mauve_contigOrderer -output /data/results_dir/ -ref /data/reference.fasta -draft /data/contigs.fasta
