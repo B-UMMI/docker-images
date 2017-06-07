@@ -16,8 +16,7 @@ RUN cpanm Bio::Perl
 # Java
 RUN apt-get install -y default-jre
 # For Linuxbrew
-RUN apt-get install -y build-essential curl file git python-setuptools ruby locales
-RUN locale-gen en_US.UTF-8 && update-locale
+RUN apt-get install -y build-essential curl file git python-setuptools ruby locales && locale-gen en_US.UTF-8 && update-locale
 # Change to the non root user
 USER ubuntu
 # Linuxbrew
@@ -29,12 +28,11 @@ ENV INFOPATH="/NGStools/linuxbrew/share/info:${INFOPATH}"
 # Snippy
 RUN brew tap homebrew/science && brew tap tseemann/homebrew-bioinformatics-linux && brew install snippy
 # Correct freebayes-parallel
-RUN sed -i "s#../vcflib/scripts/vcffirstheader#vcffirstheader#g" /NGStools/linuxbrew/Cellar/freebayes/1.1.0/bin/freebayes-parallel
-RUN sed -i "s#../vcflib/bin/vcfstreamsort#vcfstreamsort#g" /NGStools/linuxbrew/Cellar/freebayes/1.1.0/bin/freebayes-parallel
+RUN sed -i "s#../vcflib/scripts/vcffirstheader#vcffirstheader#g" /NGStools/linuxbrew/Cellar/freebayes/1.1.0/bin/freebayes-parallel && sed -i "s#../vcflib/bin/vcfstreamsort#vcfstreamsort#g" /NGStools/linuxbrew/Cellar/freebayes/1.1.0/bin/freebayes-parallel
 
 # Clean
-RUN apt-get remove -y make cpanminus build-essential curl file git python-setuptools ruby locales
-RUN apt-get autoclean -y
+USER root
+RUN apt-get remove -y make cpanminus build-essential curl file git python-setuptools ruby locales && apt-get autoclean -y
 
 WORKDIR /data/
 
