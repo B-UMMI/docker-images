@@ -1,4 +1,4 @@
-FROM ummidock/chewBBACA
+FROM ummidock/chewBBACA:latest
 
 RUN apt-get update
 RUN apt-get install default-jdk git make python-dev gcc wget g++

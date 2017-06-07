@@ -4,7 +4,7 @@ FROM ummidock/blast_binaries:2.6.0-binaries
 WORKDIR /NGStools/
 
 RUN apt-get update
-RUN apt-get install -y git make python-dev gcc wget libxml2-dev libxslt1-dev zlib1g-dev g++
+RUN apt-get install -y git make python-dev gcc wget libxml2-dev libxslt1-dev zlib1g-dev g++ build-essential python-numpy
 
 #INSTALL PIP
 RUN wget https://bootstrap.pypa.io/get-pip.py
@@ -16,11 +16,14 @@ RUN git clone https://github.com/mickaelsilva/chewBBACA.git
 
 #INSTALL chewBBACA requirements
 WORKDIR /NGStools/chewBBACA
-RUN pip install -r requirements.txt
+RUN pip2 install -r requirements.txt
+RUN pip2 install --upgrade numpy
 
 #INSTALL PRODIGAL
 WORKDIR /NGStools/Prodigal
 RUN make install
+
+WORKDIR /NGStools/
 
 #ADD chewBBACA TO PATH
 ENV PATH="/NGStools/chewBBACA:${PATH}"
