@@ -1,4 +1,5 @@
-FROM ummidock/chewBBACA:latest
+FROM ummidock/chewbbaca:latest
+MAINTAINER Bruno Gonçalves, bfgoncalves@medicina.ulisboa.pt
 
 RUN apt-get update
 RUN apt-get install default-jdk git make python-dev gcc wget g++

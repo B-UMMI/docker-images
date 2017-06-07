@@ -1,5 +1,6 @@
 #USE BLAST BINARIES FROM UMMIDOCK REPO
 FROM ummidock/blast_binaries:2.6.0-binaries
+MAINTAINER Bruno Gonçalves, bfgoncalves@medicina.ulisboa.pt
 
 WORKDIR /NGStools/
 
