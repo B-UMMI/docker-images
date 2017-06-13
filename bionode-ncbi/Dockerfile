@@ -6,10 +6,14 @@ MAINTAINER Bruno Gonçalves, bfgoncalves@medicina.ulisboa.pt
 WORKDIR /NGStools/
 #INSTALL DEPENDENCIES
 RUN apt-get update
-RUN apt-get install -y nodejs npm
+RUN apt-get install -y npm sudo curl
+
+# INSTALL node.js version 7
+RUN curl -sL https://deb.nodesource.com/setup_7.x | sudo -E bash -
+RUN apt-get install -y nodejs
 
 #UBUNTU IS SOMEHOW STUPID... and decides to break all npm modules xD
-RUN ln -s `which nodejs` /usr/bin/node
+#RUN ln -s `which nodejs` /usr/bin/node
 
 RUN npm install bionode-ncbi -g
 
