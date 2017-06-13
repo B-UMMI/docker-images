@@ -16,9 +16,4 @@ RUN git clone https://github.com/bionode/bionode-watermill.git
 
 WORKDIR ./bionode-watermill
 
-#INSTALL WATERMILL WITHIN GIT DIRECTORY
-RUN npm install
-RUN npm link
-
-#NEEDS TESTING
-RUN bionode-watermill
+#NEEDS TESTING...
