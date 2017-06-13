@@ -12,9 +12,6 @@ RUN apt-get install -y npm sudo curl
 RUN curl -sL https://deb.nodesource.com/setup_7.x | sudo -E bash -
 RUN apt-get install -y nodejs
 
-#UBUNTU IS SOMEHOW STUPID... and decides to break all npm modules xD
-#RUN ln -s `which nodejs` /usr/bin/node
-
 RUN npm install bionode-ncbi -g
 
 # This can be tested with docker run -it <img> sh
