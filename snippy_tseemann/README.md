@@ -2,7 +2,7 @@
 
 Docker container with [Snippy](https://github.com/tseemann/snippy) software.
 
-[![Docker Automated buil](https://img.shields.io/docker/automated/jrottenberg/ffmpeg.svg)](https://hub.docker.com/r/ummidock/bionode-ncbi/)
+[![Docker Automated buil](https://img.shields.io/docker/automated/jrottenberg/ffmpeg.svg)](https://hub.docker.com/r/ummidock/snippy_tseemann/)
 
 Usage
 -----
