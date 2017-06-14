@@ -2,6 +2,8 @@
 
 Docker container with a [Blast+](https://blast.ncbi.nlm.nih.gov/Blast.cgi) software built from source for LOBO cluster architecture (INTEL Broadwell).
 
+[![Docker Automated buil](https://img.shields.io/docker/automated/jrottenberg/ffmpeg.svg)](https://hub.docker.com/r/ummidock/bionode-ncbi/)
+
 Usage
 -----
 
