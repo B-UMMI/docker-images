@@ -2,7 +2,6 @@
 
 Docker container with NodeJS and [Watermill](https://github.com/bionode/bionode-watermill).
 
-
 Usage
 -----
 
