@@ -5,5 +5,5 @@ Docker container with sratoolkit for LOBO cluster.
 Usage
 -----
 
-    shifterimg pull ummidock/fastq-dump-latest
-    shifter --image=ummidock/fastq-dump-latest fastq-dump --help
+    shifterimg pull ummidock/sra-toolkit:latest 
+    shifter --image=ummidock/sra-toolkit:latest fastq-dump --help
