@@ -5,5 +5,5 @@ Docker container with NodeJS and [Watermill](https://github.com/bionode/bionode-
 Usage
 -----
 
-    shifterimg pull ummidock/bionode-watermill-latest
-    shifter --image=ummidock/bionode-watermill-latest bionode-watermill
+    shifterimg pull ummidock/bionode-watermill:latest
+    shifter --image=ummidock/bionode-watermill:latest bionode-watermill
