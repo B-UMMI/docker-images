@@ -1,6 +1,8 @@
 # docker-kraken_metagenomics
 
-Docker container with [Kraken](https://ccb.jhu.edu/software/kraken/) software.
+Docker image with [Kraken](https://ccb.jhu.edu/software/kraken/) software.
+
+**Kraken** assigns taxonomic labels to short DNA sequences, usually obtained by metagenomic studies
 
 Usage
 -----
