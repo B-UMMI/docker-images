@@ -2,12 +2,16 @@
 
 Docker container with [Kraken](https://ccb.jhu.edu/software/kraken/) software.
 
-[![Docker Automated buil](https://img.shields.io/docker/automated/jrottenberg/ffmpeg.svg)](https://hub.docker.com/r/ummidock/snippy_tseemann/)
-
 Usage
 -----
 
 You can download and run this image using the following commands:
 
-    docker pull ummidock/snippy_tseemann:3.1
-    docker run --rm -u $(id -u):$(id -g) -it -v /local/folder/data:/data/ ummidock/snippy_tseemann:3.1 snippy --cpus 1 --cleanup --outdir /data/sample/ --ref /data/ref.gbk --pe1 /data/sample_1.fastq.gz --pe2 /data/sample_2.fastq.gz
+    # Get Docker image
+    docker pull ummidock/kraken_metagenomics:0.10.5-beta
+
+    # Analyse the data with minikraken DB
+    docker run --rm -u $(id -u):$(id -g) -it -v /local/folder/data:/data/ ummidock/kraken_metagenomics:0.10.5-beta kraken --preload --fastq-input --db minikraken_20141208 --threads 2 --output /data/minikraken.sample.txt --paired --gzip-compressed /data/sample_1.fastq.gz /data/sample_2.fastq.gz
+
+    # Get Kraken report
+    docker run --rm -u $(id -u):$(id -g) -it -v /local/folder/data:/data/ ummidock/kraken_metagenomics:0.10.5-beta kraken-report --db minikraken_20141208 /data/minikraken.sample.txt > /data/minikraken.sample.report.txt
