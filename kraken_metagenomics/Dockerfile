@@ -6,7 +6,7 @@ WORKDIR /NGStools/
 RUN apt-get update
 
 # Dependencies
-RUN apt-get install -y git make sed wget g++ rsync locales && locale-gen en_GB.UTF-8 && update-locale
+RUN apt-get install -y git make sed wget g++ rsync locales && locale-gen en_GB.UTF-8 && update-locale LANGUAGE="en_GB:en" LANG="en_GB.UTF-8"
 RUN apt-get upgrade -y perl
 
 # Jellyfish v1.1.10-1
