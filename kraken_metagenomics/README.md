@@ -1,5 +1,7 @@
 # docker-kraken_metagenomics
 
+[![Docker Automated buil](https://img.shields.io/docker/automated/jrottenberg/ffmpeg.svg)](https://hub.docker.com/r/ummidock/kraken_metagenomics/)
+
 Docker image with [Kraken](https://ccb.jhu.edu/software/kraken/) software.
 
 **Kraken** assigns taxonomic labels to short DNA sequences, usually obtained by metagenomic studies
