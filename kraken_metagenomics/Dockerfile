@@ -10,7 +10,9 @@ RUN apt-get install -y git make sed wget g++ rsync jellyfish
 RUN apt-get upgrade -y perl
 
 # Kraken
-RUN git clone https://github.com/DerrickWood/kraken.git && mkdir /NGStools/kraken/kraken_instalation/ && /NGStools/kraken/install_kraken.sh /NGStools/kraken/kraken_instalation/
+RUN git clone https://github.com/DerrickWood/kraken.git && mkdir /NGStools/kraken/kraken_instalation/
+WORKDIR /NGStools/kraken/
+RUN ./install_kraken.sh /NGStools/kraken/kraken_instalation/
 ENV PATH="/NGStools/kraken/kraken_instalation:${PATH}"
 
 # minikraken DB
