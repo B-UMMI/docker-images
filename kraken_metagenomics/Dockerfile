@@ -6,7 +6,8 @@ WORKDIR /NGStools/
 RUN apt-get update
 
 # Dependencies
-RUN apt-get install -y git make sed wget g++ rsync locales && locale-gen en_GB.UTF-8 && update-locale LANGUAGE="en_GB:en" LANG="en_GB.UTF-8"
+RUN apt-get install -y git make sed wget g++ rsync locales && locale-gen en_GB.UTF-8 && update-locale
+ENV LANG="en_GB.UTF-8"
 RUN apt-get upgrade -y perl
 
 # Jellyfish v1.1.10-1
@@ -19,7 +20,7 @@ ENV PATH="/NGStools/kraken/kraken_instalation:${PATH}"
 
 # minikraken DB
 RUN mkdir /kraken_db/ && cd /kraken_db/ && wget https://ccb.jhu.edu/software/kraken/dl/minikraken.tgz && tar xf minikraken.tgz && rm minikraken.tgz
-ENV KRAKEN_DB_PATH="/kraken_db/:${KRAKEN_DB_PATH}"
+ENV KRAKEN_DB_PATH="/kraken_db:${KRAKEN_DB_PATH}"
 
 # Clean
 RUN apt-get remove -y git make locales && apt-get autoclean -y
