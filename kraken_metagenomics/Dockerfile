@@ -6,9 +6,10 @@ WORKDIR /NGStools/
 RUN apt-get update
 
 # Dependencies
-RUN apt-get install -y git make sed wget g++ rsync locales && locale-gen en_GB.UTF-8 && update-locale
-ENV LANG="en_GB.UTF-8"
+# RUN apt-get install -y git make sed wget g++ rsync locales && locale-gen en_GB.UTF-8 && update-locale
+# ENV LANG="en_GB.UTF-8"
 RUN apt-get upgrade -y perl
+RUN apt-get install -y git make sed wget g++ rsync
 
 # Jellyfish v1.1.10-1
 RUN wget https://launchpad.net/ubuntu/+archive/primary/+files/jellyfish_1.1.10.orig.tar.gz && tar xf jellyfish_1.1.10.orig.tar.gz && rm jellyfish_1.1.10.orig.tar.gz && cd /NGStools/jellyfish-1.1.10/ && ./configure && make && make install && rm -r /NGStools/jellyfish-1.1.10/
@@ -23,6 +24,7 @@ RUN mkdir /kraken_db/ && cd /kraken_db/ && wget https://ccb.jhu.edu/software/kra
 ENV KRAKEN_DB_PATH="/kraken_db:${KRAKEN_DB_PATH}"
 
 # Clean
-RUN apt-get remove -y git make locales && apt-get autoclean -y
+# RUN apt-get remove -y git make locales && apt-get autoclean -y
+RUN apt-get remove -y git make && apt-get autoclean -y
 
 WORKDIR /data/
