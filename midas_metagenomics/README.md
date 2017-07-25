@@ -1,6 +1,6 @@
 # docker-midas_metagenomics
 
-[![Docker Automated buil](https://img.shields.io/docker/automated/jrottenberg/ffmpeg.svg)](https://hub.docker.com/r/ummidock/kraken_metagenomics/)
+[![Docker Automated buil](https://img.shields.io/docker/automated/jrottenberg/ffmpeg.svg)](https://hub.docker.com/r/ummidock/midas_metagenomics/)
 
 Docker image with [MIDAS](https://github.com/snayfach/MIDAS/) software.
 
