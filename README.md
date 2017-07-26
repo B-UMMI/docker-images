@@ -9,4 +9,5 @@ UMMI docker images that are available from Docker Hub:
 * [sratoolkit](https://github.com/B-UMMI/docker-images/tree/master/fastq-dump)
 * [Snippy](https://github.com/B-UMMI/docker-images/tree/master/snippy_tseemann)
 * [MIDAS](https://github.com/B-UMMI/docker-images/tree/master/midas_metagenomics)
+* [Prokka](https://github.com/B-UMMI/docker-images/tree/master/prokka)
 * [Blast+ for LOBO](https://github.com/B-UMMI/docker-images/tree/master/blast)
