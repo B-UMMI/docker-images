@@ -20,7 +20,7 @@ RUN wget https://github.com/tseemann/barrnap/archive/0.8.tar.gz && tar xf 0.8.ta
 # Prokka
 RUN git clone https://github.com/tseemann/prokka.git && prokka/bin/prokka --setupdb
 
-ENV PATH="/NGStools/hmmer-3.1b2-linux-intel-x86_64/binaries:${PATH}"
+ENV PATH="/NGStools/hmmer-3.1b2-linux-intel-x86_64/binaries:/NGStools/barrnap-0.8/bin:/NGStools/prokka/bin:${PATH}"
 
 # Clean
 RUN apt-get remove -y git wget && apt-get autoclean -y
