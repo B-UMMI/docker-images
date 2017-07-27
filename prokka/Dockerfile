@@ -21,7 +21,7 @@ RUN wget https://github.com/tseemann/barrnap/archive/0.8.tar.gz && tar xf 0.8.ta
 RUN wget http://eddylab.org/infernal/infernal-1.1.2-linux-intel-gcc.tar.gz && tar xf infernal-1.1.2-linux-intel-gcc.tar.gz && rm infernal-1.1.2-linux-intel-gcc.tar.gz && cd infernal-1.1.2-linux-intel-gcc && ./configure && make && make install && cd /NGStools
 
 # Sequin
-RUN mkdir sequin_20170222 && wget --output-file=/NGStools/sequin_20170222/sequin.linux-x86_64.tar.gz ftp://ftp.ncbi.nih.gov/sequin/CURRENT/sequin.linux-x86_64.tar.gz && tar xf --directory=/NGStools/sequin_20170222/ /NGStools/sequin_20170222/sequin.linux-x86_64.tar.gz && rm /NGStools/sequin_20170222/sequin.linux-x86_64.tar.gz
+RUN mkdir sequin_20170222 && cd sequin_20170222 && wget ftp://ftp.ncbi.nih.gov/sequin/CURRENT/sequin.linux-x86_64.tar.gz && tar xf sequin.linux-x86_64.tar.gz && rm sequin.linux-x86_64.tar.gz && cd /NGStools
 
 # GenomeTools
 RUN wget http://genometools.org/pub/binary_distributions/gt-1.5.9-Linux_x86_64-64bit-complete.tar.gz && tar xf gt-1.5.9-Linux_x86_64-64bit-complete.tar.gz && rm gt-1.5.9-Linux_x86_64-64bit-complete.tar.gz && python /NGStools/gt-1.5.9-Linux_x86_64-64bit-complete/gtpython/setup.py install
