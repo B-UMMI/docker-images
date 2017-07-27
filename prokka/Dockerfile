@@ -41,6 +41,6 @@ RUN git clone https://github.com/tseemann/prokka.git && prokka/bin/prokka --setu
 ENV PATH="/NGStools/hmmer-3.1b2-linux-intel-x86_64/binaries:/NGStools/barrnap-0.8/bin:/NGStools/prokka/bin:${PATH}"
 
 # Clean
-RUN pip uninstall setuptools && apt-get remove -y git wget python-pip && apt-get autoclean -y
+RUN pip uninstall -y setuptools && apt-get remove -y git wget python-pip && apt-get autoclean -y
 
 WORKDIR /data/
