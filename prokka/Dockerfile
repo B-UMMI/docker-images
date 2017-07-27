@@ -27,7 +27,7 @@ RUN wget ftp://ftp.ncbi.nih.gov/sequin/CURRENT/sequin.linux-x86_64.tar.gz && tar
 RUN wget http://genometools.org/pub/binary_distributions/gt-1.5.9-Linux_x86_64-64bit-complete.tar.gz && tar xf gt-1.5.9-Linux_x86_64-64bit-complete.tar.gz && rm gt-1.5.9-Linux_x86_64-64bit-complete.tar.gz
 
 # gff3toembl
-RUN git clone git@github.com:sanger-pathogens/gff3toembl.git && python gff3toembl/setup.py install
+RUN git clone https://github.com/sanger-pathogens/gff3toembl.git && python gff3toembl/setup.py install
 
 # CD-HIT
 RUN wget https://github.com/weizhongli/cdhit/releases/download/V4.6.8/cd-hit-v4.6.8-2017-0621-source.tar.gz && tar xf cd-hit-v4.6.8-2017-0621-source.tar.gz && rm cd-hit-v4.6.8-2017-0621-source.tar.gz
