@@ -6,7 +6,7 @@ WORKDIR /NGStools/
 RUN apt-get update
 
 # Dependencies
-RUN apt-get install -y libdatetime-perl libxml-simple-perl libdigest-md5-perl default-jre bioperl curl git wget
+RUN apt-get install -y libdatetime-perl libxml-simple-perl libdigest-md5-perl default-jre bioperl curl git wget python-pip && pip install -U setuptools
 
 # # HMMER3
 # RUN wget http://eddylab.org/software/hmmer3/3.1b2/hmmer-3.1b2-linux-intel-x86_64.tar.gz && tar xf hmmer-3.1b2-linux-intel-x86_64.tar.gz && rm hmmer-3.1b2-linux-intel-x86_64.tar.gz
@@ -41,6 +41,6 @@ RUN git clone https://github.com/tseemann/prokka.git && prokka/bin/prokka --setu
 ENV PATH="/NGStools/hmmer-3.1b2-linux-intel-x86_64/binaries:/NGStools/barrnap-0.8/bin:/NGStools/prokka/bin:${PATH}"
 
 # Clean
-RUN apt-get remove -y git wget && apt-get autoclean -y
+RUN pip uninstall setuptools && apt-get remove -y git wget python-pip && apt-get autoclean -y
 
 WORKDIR /data/
