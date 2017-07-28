@@ -8,6 +8,7 @@ RUN apt-get update
 # Dependencies
 RUN apt-get install -y parallel make wget git python-pip && pip install -U setuptools
 
+# To be used with SignalP
 # # HMMER3
 # RUN wget http://eddylab.org/software/hmmer3/3.1b2/hmmer-3.1b2-linux-intel-x86_64.tar.gz && tar xf hmmer-3.1b2-linux-intel-x86_64.tar.gz && rm hmmer-3.1b2-linux-intel-x86_64.tar.gz
 #
