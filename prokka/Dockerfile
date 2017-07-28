@@ -6,7 +6,7 @@ WORKDIR /NGStools/
 RUN apt-get update
 
 # Dependencies
-RUN apt-get install -y curl git wget make python-pip && pip install -U setuptools
+RUN apt-get install -y parallel make wget git python-pip && pip install -U setuptools
 # libcairo2-dev
 
 # # HMMER3
@@ -14,15 +14,12 @@ RUN apt-get install -y curl git wget make python-pip && pip install -U setuptool
 #
 # # # HMMER2
 # # RUN wget http://eddylab.org/software/hmmer/2.3.2/hmmer-2.3.2.tar.gz && tar xf hmmer-2.3.2.tar.gz && rm hmmer-2.3.2.tar.gz
-#
+
 # Barrnap
 RUN wget https://github.com/tseemann/barrnap/archive/0.8.tar.gz && tar xf 0.8.tar.gz && rm 0.8.tar.gz
 
 # Infernal
 RUN wget http://eddylab.org/infernal/infernal-1.1.2-linux-intel-gcc.tar.gz && tar xf infernal-1.1.2-linux-intel-gcc.tar.gz && rm infernal-1.1.2-linux-intel-gcc.tar.gz && cd infernal-1.1.2-linux-intel-gcc && ./configure && make && make install && cd easel && make install && cd /NGStools && rm -rf infernal-1.1.2-linux-intel-gcc/
-
-# Sequin
-RUN mkdir sequin_20170222 && cd sequin_20170222 && wget ftp://ftp.ncbi.nih.gov/sequin/CURRENT/sequin.linux-x86_64.tar.gz && tar xf sequin.linux-x86_64.tar.gz && rm sequin.linux-x86_64.tar.gz && cd /NGStools
 
 # GenomeTools
 RUN apt-get install -y libpango1.0-dev && wget http://genometools.org/pub/genometools-1.5.9.tar.gz && tar xf genometools-1.5.9.tar.gz && rm genometools-1.5.9.tar.gz && cd genometools-1.5.9 && make && make install && cd gtpython && python setup.py install && cd /NGStools && rm -rf genometools-1.5.9/
@@ -42,10 +39,13 @@ RUN wget http://ftp.ebi.ac.uk/pub/software/vertebrategenomics/exonerate/exonerat
 # Prokka
 RUN apt-get install -y libdatetime-perl libxml-simple-perl libdigest-md5-perl default-jre bioperl && git clone https://github.com/tseemann/prokka.git && prokka/bin/prokka --setupdb
 
-ENV PATH="/NGStools/barrnap-0.8/bin:/NGStools/sequin_20170222:/NGStools/gff3toembl/gff3toembl/scripts:/NGStools/ncbi-blast-2.6.0+/bin:/NGStools/cd-hit-v4.6.8-2017-0621:/NGStools/cd-hit-v4.6.8-2017-0621/cd-hit-auxtools:/NGStools/exonerate-2.2.0-x86_64/bin:/NGStools/prokka/bin:${PATH}" LD_LIBRARY_PATH="/usr/local/lib:$LD_LIBRARY_PATH"
+# Sequin not install because it requires X Windows
+# Be aware that EMBL validator changed. Please see http://www.ebi.ac.uk/ena/software/flat-file-validator for further information
+
+ENV PATH="/NGStools/gff3toembl/gff3toembl/scripts:/NGStools/ncbi-blast-2.6.0+/bin:/NGStools/cd-hit-v4.6.8-2017-0621:/NGStools/cd-hit-v4.6.8-2017-0621/cd-hit-auxtools:/NGStools/exonerate-2.2.0-x86_64/bin:/NGStools/prokka/bin:${PATH}" LD_LIBRARY_PATH="/usr/local/lib:$LD_LIBRARY_PATH" PYTHONPATH="/NGStools/gff3toembl/gff3toembl:$PYTHONPATH"
 #/NGStools/hmmer-3.1b2-linux-intel-x86_64/binaries:
 
 # Clean
-RUN pip uninstall -y setuptools && apt-get remove -y git wget python-pip && apt-get autoclean -y
+RUN pip uninstall -y setuptools && apt-get remove -y git python-pip && apt-get autoclean -y
 
 WORKDIR /data/
