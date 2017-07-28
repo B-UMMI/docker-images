@@ -6,7 +6,7 @@ WORKDIR /NGStools/
 RUN apt-get update
 
 # Dependencies
-RUN apt-get install -y libdatetime-perl libxml-simple-perl libdigest-md5-perl default-jre bioperl curl libpango1.0-dev git wget make python-pip && pip install -U setuptools
+RUN apt-get install -y curl git wget make python-pip && pip install -U setuptools
 # libcairo2-dev
 
 # # HMMER3
@@ -25,7 +25,7 @@ RUN wget http://eddylab.org/infernal/infernal-1.1.2-linux-intel-gcc.tar.gz && ta
 RUN mkdir sequin_20170222 && cd sequin_20170222 && wget ftp://ftp.ncbi.nih.gov/sequin/CURRENT/sequin.linux-x86_64.tar.gz && tar xf sequin.linux-x86_64.tar.gz && rm sequin.linux-x86_64.tar.gz && cd /NGStools
 
 # GenomeTools
-RUN wget http://genometools.org/pub/genometools-1.5.9.tar.gz && tar xf genometools-1.5.9.tar.gz && rm genometools-1.5.9.tar.gz && cd genometools-1.5.9 && make && make install && cd gtpython && python setup.py install && cd /NGStools && rm -rf genometools-1.5.9/
+RUN apt-get install -y libpango1.0-dev && wget http://genometools.org/pub/genometools-1.5.9.tar.gz && tar xf genometools-1.5.9.tar.gz && rm genometools-1.5.9.tar.gz && cd genometools-1.5.9 && make && make install && cd gtpython && python setup.py install && cd /NGStools && rm -rf genometools-1.5.9/
 
 # gff3toembl
 RUN mkdir gff3toembl && cd gff3toembl && git clone https://github.com/sanger-pathogens/gff3toembl.git && python gff3toembl/setup.py install && cd /NGStools
@@ -40,12 +40,12 @@ RUN wget https://github.com/weizhongli/cdhit/releases/download/V4.6.8/cd-hit-v4.
 RUN wget http://ftp.ebi.ac.uk/pub/software/vertebrategenomics/exonerate/exonerate-2.2.0-x86_64.tar.gz && tar xf exonerate-2.2.0-x86_64.tar.gz --no-same-owner && chmod 755 exonerate-2.2.0-x86_64/ && rm exonerate-2.2.0-x86_64.tar.gz
 
 # Prokka
-RUN git clone https://github.com/tseemann/prokka.git && prokka/bin/prokka --setupdb
+RUN apt-get install -y libdatetime-perl libxml-simple-perl libdigest-md5-perl default-jre bioperl && git clone https://github.com/tseemann/prokka.git && prokka/bin/prokka --setupdb
 
-ENV PATH="/NGStools/barrnap-0.8/bin:/NGStools/sequin_20170222:/NGStools/gff3toembl/gff3toembl/scripts:/NGStools/ncbi-blast-2.6.0+/bin:/NGStools/cd-hit-v4.6.8-2017-0621:/NGStools/cd-hit-v4.6.8-2017-0621/cd-hit-auxtools:/NGStools/exonerate-2.2.0-x86_64/bin:/NGStools/prokka/bin:${PATH}"
+ENV PATH="/NGStools/barrnap-0.8/bin:/NGStools/sequin_20170222:/NGStools/gff3toembl/gff3toembl/scripts:/NGStools/ncbi-blast-2.6.0+/bin:/NGStools/cd-hit-v4.6.8-2017-0621:/NGStools/cd-hit-v4.6.8-2017-0621/cd-hit-auxtools:/NGStools/exonerate-2.2.0-x86_64/bin:/NGStools/prokka/bin:${PATH}" LD_LIBRARY_PATH="/usr/local/lib:$LD_LIBRARY_PATH"
 #/NGStools/hmmer-3.1b2-linux-intel-x86_64/binaries:
 
 # Clean
-RUN pip uninstall -y setuptools && apt-get remove -y git wget make python-pip && apt-get autoclean -y
+RUN pip uninstall -y setuptools && apt-get remove -y git wget python-pip && apt-get autoclean -y
 
 WORKDIR /data/
