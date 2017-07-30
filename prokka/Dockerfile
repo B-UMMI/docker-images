@@ -6,7 +6,7 @@ WORKDIR /NGStools/
 RUN apt-get update
 
 # Dependencies
-RUN apt-get install -y parallel make wget git python-pip && pip install -U setuptools
+RUN apt-get install -y parallel make wget git python-pip locales && pip install -U setuptools && locale-gen en_US.UTF-8 && update-locale
 
 # To be used with SignalP
 # # HMMER3
@@ -46,6 +46,6 @@ ENV PATH="/NGStools/gff3toembl/gff3toembl/scripts:/NGStools/ncbi-blast-2.6.0+/bi
 #/NGStools/hmmer-3.1b2-linux-intel-x86_64/binaries:
 
 # Clean
-RUN pip uninstall -y setuptools && apt-get remove -y git python-pip && apt-get autoclean -y
+RUN pip uninstall -y setuptools && apt-get remove -y git python-pip locales && apt-get autoclean -y
 
 WORKDIR /data/
