@@ -4,8 +4,16 @@ MAINTAINER Miguel Machado <mpmachado@medicina.ulisboa.pt>
 WORKDIR /NGStools/
 
 # Dependencies
-RUN apt-get update && apt-get install -y parallel make wget git python-pip locales && pip install -U setuptools && locale-gen --purge en_US.UTF-8 && DEBIAN_FRONTEND="noninteractive" dpkg-reconfigure locales && update-locale LANG=en_US.UTF-8 LANGUAGE=en_US.UTF-8 LC_ALL=en_US.UTF-8
+RUN apt-get update && apt-get install -y parallel make wget git python-pip && pip install -U setuptools
+# RUN apt-get update && apt-get install -y parallel make wget git python-pip locales && pip install -U setuptools && locale-gen --purge en_US.UTF-8 && DEBIAN_FRONTEND="noninteractive" dpkg-reconfigure locales && update-locale LANG=en_US.UTF-8 LANGUAGE=en_US.UTF-8 LC_ALL=en_US.UTF-8
 # RUN apt-get install -y parallel make wget git python-pip locales && pip install -U setuptools && locale-gen --purge en_US.UTF-8 && echo -e 'LANG="en_US.UTF-8"\nLANGUAGE="en_US:en"\n' >> /etc/default/locale
+
+# From https://github.com/docker-library/postgres/blob/69bc540ecfffecce72d49fa7e4a46680350037f9/9.6/Dockerfile#L21-L24
+# make the "en_US.UTF-8" locale so postgres will be utf-8 enabled by default
+RUN apt-get install -y locales && \
+  rm -rf /var/lib/apt/lists/* && \
+	localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
+ENV LANG en_US.utf8
 
 # To be used with SignalP
 # # HMMER3
