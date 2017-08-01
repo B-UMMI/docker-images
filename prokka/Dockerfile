@@ -42,12 +42,12 @@ RUN apt-get install -y libdatetime-perl libxml-simple-perl libdigest-md5-perl de
 # Sequin not install because it requires X Windows
 # Be aware that EMBL validator changed. Please see http://www.ebi.ac.uk/ena/software/flat-file-validator for further information
 
-# From https://github.com/docker-library/postgres/blob/69bc540ecfffecce72d49fa7e4a46680350037f9/9.6/Dockerfile
-# make the "en_US.UTF-8" locale so postgres will be utf-8 enabled by default
-RUN apt-get install -y locales && \
-  rm -rf /var/lib/apt/lists/* && \
-	localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
-ENV LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8 LANGUAGE=en_US.UTF-8
+# # From https://github.com/docker-library/postgres/blob/69bc540ecfffecce72d49fa7e4a46680350037f9/9.6/Dockerfile
+# # make the "en_US.UTF-8" locale so postgres will be utf-8 enabled by default
+# RUN apt-get install -y locales && \
+#   rm -rf /var/lib/apt/lists/* && \
+# 	localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
+# ENV LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8 LANGUAGE=en_US.UTF-8
 
 ENV PATH="/NGStools/gff3toembl/gff3toembl/scripts:/NGStools/ncbi-blast-2.6.0+/bin:/NGStools/cd-hit-v4.6.8-2017-0621:/NGStools/cd-hit-v4.6.8-2017-0621/cd-hit-auxtools:/NGStools/exonerate-2.2.0-x86_64/bin:/NGStools/prokka/bin:${PATH}" LD_LIBRARY_PATH="/usr/local/lib:$LD_LIBRARY_PATH" PYTHONPATH="/NGStools/gff3toembl/gff3toembl:$PYTHONPATH"
 #/NGStools/hmmer-3.1b2-linux-intel-x86_64/binaries:
