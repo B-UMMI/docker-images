@@ -4,6 +4,11 @@
 
 Docker image with basic Ubuntu tools.
 
+**Tools**
+
+* ftp
+* 7zip
+
 Usage
 -----
 
