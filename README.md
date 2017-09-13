@@ -13,3 +13,4 @@ UMMI docker images that are available from Docker Hub:
 * [Prokka](https://github.com/B-UMMI/docker-images/tree/master/prokka)
 * [Blast+ for LOBO](https://github.com/B-UMMI/docker-images/tree/master/blast)
 * [Ubuntu](https://github.com/B-UMMI/docker-images/tree/master/ubuntu_base)
+* [abricate](https://github.com/B-UMMI/docker-images/tree/master/abricate)
