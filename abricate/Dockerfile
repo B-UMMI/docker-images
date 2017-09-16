@@ -7,12 +7,13 @@ RUN apt-get update && apt-get -y install \
 	gzip \
 	wget
 
-WORKDIR /home/user
+WORKDIR /NGStools
 
 # INSTALL MINICONDA
 RUN wget https://repo.continuum.io/miniconda/Miniconda2-latest-Linux-x86_64.sh
-RUN chmod +x Miniconda2-latest-Linux-x86_64.sh && ./Miniconda2-latest-Linux-x86_64.sh -b -p /home/user/miniconda
-ENV PATH="/home/user/miniconda/bin:$PATH"
+RUN chmod +x Miniconda2-latest-Linux-x86_64.sh 
+RUN ./Miniconda2-latest-Linux-x86_64.sh -b -p /NGStools/miniconda 
+ENV PATH="/NGStools/miniconda/bin:$PATH"
 # Configure channels for bioconda
 RUN conda config --add channels defaults && conda config --add channels conda-forge && conda config --add channels bioconda
 
