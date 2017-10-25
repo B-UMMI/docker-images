@@ -20,5 +20,3 @@ RUN conda config --add channels defaults && conda config --add channels conda-fo
 # INSTALL abricate
 RUN conda install abricate
 RUN abricate --check && abricate --setupdb
-
-RUN bash
