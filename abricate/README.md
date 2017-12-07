@@ -13,8 +13,8 @@ Usage
 docker pull ummidock/abricate:latest
 ## Docker usage
 docker run --rm ummidock/abricate:latest abricate --list
-docker run --rm -u $(id -u):$(id -g) -it -v /local/folder/data/:/data/ ummidock/abricate:latest abricate --db resfinder /data/sequence.*.fasta > /data/abricate_out.resfinder.tab
-docker run --rm -u $(id -u):$(id -g) -it -v /local/folder/data/:/data/ ummidock/abricate:latest abricate --summary /data/abricate_out.resfinder.tab > /data/abricate_summary.resfinder.tab
+docker run --rm -u $(id -u):$(id -g) -it -v /local/folder/data/:/data/ ummidock/abricate:latest abricate --db resfinder /data/sequence.*.fasta > /local/folder/data/abricate_out.resfinder.tab
+docker run --rm -u $(id -u):$(id -g) -it -v /local/folder/data/:/data/ ummidock/abricate:latest abricate --summary /data/abricate_out.resfinder.tab > /local/folder/data/abricate_summary.resfinder.tab
 
 # Using with Shifter (containers for HPC)
 shifterimg pull ummidock/abricate:latest
