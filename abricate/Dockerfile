@@ -1,4 +1,4 @@
-# DOCKERFILE for abricate https://github.com/tseemann/abricate 
+# DOCKERFILE for abricate https://github.com/tseemann/abricate
 FROM ubuntu:16.04
 MAINTAINER Diogo N. Silva, diogosilva@medicina.ulisboa.pt
 
@@ -11,8 +11,8 @@ WORKDIR /NGStools
 
 # INSTALL MINICONDA
 RUN wget https://repo.continuum.io/miniconda/Miniconda2-latest-Linux-x86_64.sh
-RUN chmod +x Miniconda2-latest-Linux-x86_64.sh 
-RUN ./Miniconda2-latest-Linux-x86_64.sh -b -p /NGStools/miniconda 
+RUN chmod +x Miniconda2-latest-Linux-x86_64.sh
+RUN ./Miniconda2-latest-Linux-x86_64.sh -b -p /NGStools/miniconda
 ENV PATH="/NGStools/miniconda/bin:$PATH"
 # Configure channels for bioconda
 RUN conda config --add channels defaults && conda config --add channels conda-forge && conda config --add channels bioconda
@@ -21,4 +21,4 @@ RUN conda config --add channels defaults && conda config --add channels conda-fo
 RUN conda install abricate
 RUN abricate --check && abricate --setupdb
 
-RUN bash
+WORKDIR /data/
