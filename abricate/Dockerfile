@@ -5,6 +5,8 @@ MAINTAINER Diogo N. Silva, diogosilva@medicina.ulisboa.pt
 RUN apt-get update && apt-get -y install \
 	bzip2 \
 	gzip \
+	pyton \
+	python3 \
 	wget
 
 WORKDIR /NGStools
