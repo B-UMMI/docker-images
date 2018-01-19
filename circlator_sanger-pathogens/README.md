@@ -30,3 +30,5 @@ This Docker image contains:
 * [MUMmer](https://github.com/mummer4/mummer) v4.0.0beta2
 * [SPAdes](http://cab.spbu.ru/software/spades/) v3.11.1
 * [Canu](http://canu.readthedocs.io/en/latest/) v1.6
+* [Blat](http://genome.ucsc.edu/index.html) v36x2
+* [AMOS](https://sourceforge.net/projects/amos/) v3.1.0 (without GUI interface)

@@ -7,7 +7,7 @@ WORKDIR /NGStools/
 
 RUN apt-get update && \
     apt-get -y upgrade && \
-    apt-get install -y wget bzip2 xz-utils make g++ zlib1g-dev libncurses5-dev libbz2-dev liblzma-dev libcurl4-openssl-dev python python3 python3-pip
+    apt-get install -y wget bzip2 xz-utils make g++ zlib1g-dev libncurses5-dev libbz2-dev liblzma-dev libcurl4-openssl-dev libpng-dev libssl-dev libboost-all-dev libstatistics-descriptive-perl libxml-parser-perl libdbi-perl python python3 python3-pip
 
 RUN wget https://downloads.sourceforge.net/project/bio-bwa/bwa-0.7.17.tar.bz2 && \
     tar xf bwa-0.7.17.tar.bz2 && \
@@ -55,7 +55,34 @@ RUN wget https://github.com/sanger-pathogens/circlator/archive/v1.5.3.tar.gz && 
     tar xf v1.5.3.tar.gz && \
     rm v1.5.3.tar.gz && \
     cd circlator-1.5.3 && \
-    python3 setup.py install
+    python3 setup.py install && \
+    cd /NGStools
+
+RUN mkdir blat_v36x2 && \
+    cd blat_v36x2 && \
+    wget http://hgdownload.soe.ucsc.edu/admin/exe/linux.x86_64/blat/ && \
+    wget http://hgdownload.soe.ucsc.edu/admin/exe/linux.x86_64/blat/FOOTER.txt && \
+    wget http://hgdownload.soe.ucsc.edu/admin/exe/linux.x86_64/blat/blat && \
+    wget http://hgdownload.soe.ucsc.edu/admin/exe/linux.x86_64/blat/gfClient && \
+    wget http://hgdownload.soe.ucsc.edu/admin/exe/linux.x86_64/blat/gfServer && \
+    chmod +x blat gf* && \
+    cd /NGStools
+
+ENV PATH="/NGStools/blat_v36x2:${PATH}"
+
+RUN wget https://downloads.sourceforge.net/project/amos/amos/3.1.0/amos-3.1.0.tar.gz && \
+    tar xf amos-3.1.0.tar.gz && \
+    rm amos-3.1.0.tar.gz && \
+    cd amos-3.1.0 && \
+    ./configure && \
+    cp src/Align/find-tandem.cc src/Align/find-tandem.cc.original && \
+    echo '#include <getopt.h>' | cat - src/Align/find-tandem.cc.original > src/Align/find-tandem.cc && \
+    make && \
+    make install && \
+    make clean && \
+    cd /NGStools
+
+ENV PATH="/NGStools/amos-3.1.0/bin:${PATH}"
 
 RUN apt-get remove -y make g++ python3-pip && \
     apt-get autoclean -y
