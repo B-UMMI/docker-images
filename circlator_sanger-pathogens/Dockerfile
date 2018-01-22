@@ -84,7 +84,7 @@ RUN wget https://downloads.sourceforge.net/project/amos/amos/3.1.0/amos-3.1.0.ta
 
 ENV PATH="/NGStools/amos-3.1.0/bin:${PATH}"
 
-RUN apt-get remove -y make g++ python3-pip && \
+RUN apt-get remove -y make python3-pip && \
     apt-get autoclean -y
 
 WORKDIR /data/
