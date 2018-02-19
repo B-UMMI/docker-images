@@ -1,5 +1,5 @@
 # DOCKERFILE for abricate https://github.com/tseemann/abricate 
-FROM ummidock/assemblerflow_base:1.0.0
+FROM ubuntu:16.04
 MAINTAINER Diogo N. Silva, diogosilva@medicina.ulisboa.pt
 
 RUN apt-get update && apt-get -y install \
