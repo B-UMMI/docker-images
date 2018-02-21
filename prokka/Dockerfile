@@ -30,6 +30,13 @@ RUN wget http://ftp.ebi.ac.uk/pub/software/vertebrategenomics/exonerate/exonerat
 # Prokka
 RUN apt-get install -y libdatetime-perl libxml-simple-perl libdigest-md5-perl default-jre bioperl && git clone https://github.com/tseemann/prokka.git && prokka/bin/prokka --setupdb
 
+# tbl2asn
+RUN wget ftp://ftp.ncbi.nih.gov/toolbox/ncbi_tools/converters/by_program/tbl2asn/linux.tbl2asn.gz && \
+    gunzip linux.tbl2asn.gz && \
+    mv linux.tbl2asn tbl2asn && \
+    chmod +x tbl2asn && \
+    mv tbl2asn /NGStools/prokka/binaries/linux/
+
 # Sequin not install because it requires X Windows
 # Be aware that EMBL validator changed. Please see http://www.ebi.ac.uk/ena/software/flat-file-validator for further information
 
