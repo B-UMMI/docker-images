@@ -12,6 +12,7 @@ UMMI docker images that are available from Docker Hub:
 * [Circlator](./circlator_sanger-pathogens)
 * [MIDAS](./midas_metagenomics)
 * [Prokka](./prokka)
+* [abricate](./abricate)
+* [SISTR](./sistr_cmd)
 * [Blast+ for LOBO](./blast)
 * [Ubuntu](./ubuntu_base)
-* [abricate](./abricate)

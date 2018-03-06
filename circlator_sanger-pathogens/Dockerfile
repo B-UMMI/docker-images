@@ -51,12 +51,16 @@ RUN wget https://github.com/marbl/canu/releases/download/v1.6/canu-1.6.Linux-amd
 
 ENV PATH="/NGStools/canu-1.6/Linux-amd64/bin:/NGStools/SPAdes-3.11.1-Linux/bin:/NGStools/mummer-4.0.0beta2:/NGStools/samtools-1.3.1:/NGStools/Prodigal_v2.6.3:/NGStools/bwa-0.7.17:${PATH}"
 
+# Circlator
+
 RUN wget https://github.com/sanger-pathogens/circlator/archive/v1.5.3.tar.gz && \
     tar xf v1.5.3.tar.gz && \
     rm v1.5.3.tar.gz && \
     cd circlator-1.5.3 && \
     python3 setup.py install && \
     cd /NGStools
+
+# Other dependencies
 
 RUN mkdir blat_v36x2 && \
     cd blat_v36x2 && \
@@ -83,6 +87,8 @@ RUN wget https://downloads.sourceforge.net/project/amos/amos/3.1.0/amos-3.1.0.ta
     cd /NGStools
 
 ENV PATH="/NGStools/amos-3.1.0/bin:${PATH}"
+
+# Clean
 
 RUN apt-get remove -y make python3-pip && \
     apt-get autoclean -y
