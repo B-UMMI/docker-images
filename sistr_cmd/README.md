@@ -4,7 +4,7 @@
 
 Docker image with [SISTR](https://lfz.corefacility.ca/sistr-app/) command line software ([GitHub page](https://github.com/peterk87/sistr_cmd)).
 
-**SISTR**: Salmonella rerovar predictions from whole-genome sequence assemblies
+**SISTR**: Salmonella serovar predictions from whole-genome sequence assemblies
 
 ## Usage
 
