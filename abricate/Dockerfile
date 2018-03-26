@@ -19,8 +19,13 @@ ENV PATH="/NGStools/miniconda/bin:$PATH"
 # Configure channels for bioconda
 RUN conda update -y -n base conda && conda config --add channels conda-forge && conda config --add channels defaults &&  conda config --add channels bioconda
 
+# ADD Virulence_finder database
+RUN git clone https://bitbucket.org/genomicepidemiology/virulencefinder_db.git && cd virulencefinder_db && cat *.fsa >> sequences  
+
 # INSTALL abricate
 RUN conda install -y abricate
+#RUN mkdir -p /NGStools/miniconda3/db/Virulence_finder && cp virulencefinder_db/sequences /NGStools/miniconda3/db/Virulence_finder
 RUN abricate --check && abricate --setupdb
+RUN cd /NGStools/miniconda/db && mkdir virulencefinder && cp /NGStools/virulencefinder_db/sequences virulencefinder/ && abricate --setupdb
 
 WORKDIR /data/
