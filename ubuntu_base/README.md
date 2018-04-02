@@ -8,6 +8,7 @@ Docker image with basic Ubuntu tools.
 
 * ftp
 * 7zip
+* tabix (with bgzip)
 
 Usage
 -----
