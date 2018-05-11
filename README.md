@@ -14,5 +14,6 @@ UMMI docker images that are available from Docker Hub:
 * [Prokka](./prokka)
 * [abricate](./abricate)
 * [SISTR](./sistr_cmd)
+* [breseq](./breseq)
 * [Blast+ for LOBO](./blast)
 * [Ubuntu](./ubuntu_base)
