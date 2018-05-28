@@ -1,6 +1,6 @@
 UMMI docker images that are available from Docker Hub:
 
-<https://hub.docker.com/u/ummidock/dashboard/>
+<https://hub.docker.com/u/ummidock/>
 
 * [bionode-ncbi](./bionode-ncbi)
 * [bionode-watermill](./bionode-watermill)
