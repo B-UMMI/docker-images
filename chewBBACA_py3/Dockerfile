@@ -1,15 +1,12 @@
 #USE BLAST BINARIES FROM UMMIDOCK REPO
-FROM ummidock/blast_binaries:2.6.0-binaries
-MAINTAINER Diogo N Silva, diogosilva@medicina.ulisboa.pt
+FROM ummidock/blast_binaries:2.9.0-binaries
+MAINTAINER Inês Mendes, cimendes@medicina.ulisboa.pt
 
 WORKDIR /NGStools/
 
 RUN apt-get update && apt-get install -y \
 	git \
 	make \
-	python3-dev \
-	python3-numpy \
-	python3-pip \
 	gcc \
 	wget \
 	libxml2-dev \
@@ -18,22 +15,40 @@ RUN apt-get update && apt-get install -y \
 	liblapack-dev \
 	zlib1g-dev \
 	g++ \
-	build-essential 
+	build-essential
+
+# INSTALL CONDA
+RUN wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+RUN chmod +x Miniconda3-latest-Linux-x86_64.sh
+RUN ./Miniconda3-latest-Linux-x86_64.sh -b -p /NGStools/miniconda
+ENV PATH="/NGStools/miniconda/bin:$PATH"
+RUN python -m pip install --upgrade pip
 
 #GET chewBBACA and Prodigal
 RUN git clone https://github.com/hyattpd/Prodigal.git
-RUN git clone -b chewbbaca_py3 https://github.com/B-UMMI/chewBBACA.git 
+RUN git clone https://github.com/B-UMMI/chewBBACA.git
 
 #INSTALL chewBBACA requirements
 WORKDIR /NGStools/chewBBACA
-RUN pip3 install -r requirements.txt
-RUN pip3 install --upgrade numpy
+ENV LANG C.UTF-8
+RUN python3 setup.py install
 
 #INSTALL PRODIGAL
 WORKDIR /NGStools/Prodigal
 RUN make install
 
 WORKDIR /NGStools/
+
+#install mafft and clustalw2 to run schema evaluator
+RUN wget www.clustal.org/download/current/clustalw-2.1-linux-x86_64-libcppstatic.tar.gz
+RUN tar -zxf clustalw-2.1-linux-x86_64-libcppstatic.tar.gz
+RUN rm clustalw-2.1-linux-x86_64-libcppstatic.tar.gz
+ENV PATH="/NGStools/clustalw-2.1-linux-x86_64-libcppstatic:${PATH}"
+
+RUN apt-get autoclean
+RUN apt-get autoremove
+RUN apt-get clean
+RUN apt-get install -y mafft
 
 #ADD chewBBACA TO PATH
 ENV PATH="/NGStools/chewBBACA:${PATH}"
