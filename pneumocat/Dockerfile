@@ -28,4 +28,4 @@ RUN pip2 install PyYaml numpy lxml pysam biopython
 RUN git clone https://github.com/phe-bioinformatics/PneumoCaT.git
 ENV PATH="/NGStools/PneumoCaT:${PATH}"
 
-CMD PneumoCaT.py --help
+#CMD PneumoCaT.py --help
