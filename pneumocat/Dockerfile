@@ -7,7 +7,7 @@ RUN apt-get update
 # -- General Dependencies ---
 RUN apt-get install -y git wget make gcc libxml2-dev libxslt1-dev zlib1g-dev g++ build-essential libncurses5-dev libncursesw5-dev
 RUN apt-get install -y python-dev python-pip
-RUN apt-get install -y lbzip2 unzip
+RUN apt-get install -y lbzip2 unzip libbz2-dev liblzma-dev
 
 # -- PneumoCaT Dependencies ---
 #Bowtie2
@@ -28,4 +28,4 @@ RUN pip2 install PyYaml numpy lxml pysam biopython
 RUN git clone https://github.com/phe-bioinformatics/PneumoCaT.git
 ENV PATH="/NGStools/PneumoCaT:${PATH}"
 
-#CMD PneumoCaT.py --help
+CMD PneumoCaT.py --help
