@@ -15,10 +15,10 @@ RUN wget https://downloads.sourceforge.net/project/bowtie-bio/bowtie2/2.2.9/bowt
 ENV PATH="/NGStools/bowtie2-2.2.9:${PATH}"
 
 #Samtools
-RUN wget https://downloads.sourceforge.net/project/samtools/samtools/0.1.19/samtools-0.1.19.tar.bz2  && tar -xf samtools-0.1.19.tar.bz2 && rm samtools-0.1.19.tar.bz2
-WORKDIR samtools-0.1.19
+RUN wget https://downloads.sourceforge.net/project/samtools/samtools/1.9/samtools-1.9.tar.bz2  && tar -xf samtools-1.9.tar.bz2 && rm samtools-1.9.tar.bz2
+WORKDIR samtools-1.9
 RUN make
-ENV PATH="/NGStools/samtools-0.1.19:${PATH}"
+ENV PATH="/NGStools/samtools-1.9:${PATH}"
 WORKDIR /NGStools/
 
 #Python dependencies
