@@ -52,9 +52,9 @@ RUN mkdir gff3toembl && \
     cd /NGStools
 
 # Blast+
-RUN wget ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/2.7.1/ncbi-blast-2.7.1+-x64-linux.tar.gz && \
-    tar xf ncbi-blast-2.7.1+-x64-linux.tar.gz && \
-    rm ncbi-blast-2.7.1+-x64-linux.tar.gz
+RUN wget ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/2.9.0/ncbi-blast-2.9.0+-x64-linux.tar.gz && \
+    tar xf ncbi-blast-2.9.0+-x64-linux.tar.gz && \
+    rm ncbi-blast-2.9.0+-x64-linux.tar.gz
 
 # CD-HIT
 RUN wget https://github.com/weizhongli/cdhit/releases/download/V4.6.8/cd-hit-v4.6.8-2017-0621-source.tar.gz && \
@@ -72,8 +72,12 @@ RUN wget http://ftp.ebi.ac.uk/pub/software/vertebrategenomics/exonerate/exonerat
     chmod 755 exonerate-2.2.0-x86_64/ && \
     rm exonerate-2.2.0-x86_64.tar.gz
 
+ENV PATH="/NGStools/barrnap-0.9/bin:/NGStools/gff3toembl/gff3toembl/scripts:/NGStools/ncbi-blast-2.9.0+/bin:/NGStools/cd-hit-v4.6.8-2017-0621:/NGStools/cd-hit-v4.6.8-2017-0621/cd-hit-auxtools:/NGStools/exonerate-2.2.0-x86_64/bin:${PATH}" LD_LIBRARY_PATH="/usr/local/lib:$LD_LIBRARY_PATH" PYTHONPATH="/NGStools/gff3toembl/gff3toembl:$PYTHONPATH"
+
 # Prokka
-RUN apt-get install -y libdatetime-perl libxml-simple-perl libdigest-md5-perl default-jre bioperl && \
+RUN apt-get install -y libdatetime-perl libxml-simple-perl libdigest-md5-perl default-jre bioperl
+# fix https://github.com/tseemann/prokka/issues/414
+RUN cpan List::Util && \
     git clone https://github.com/tseemann/prokka.git && \
     prokka/bin/prokka --setupdb
 
@@ -87,7 +91,7 @@ RUN wget ftp://ftp.ncbi.nih.gov/toolbox/ncbi_tools/converters/by_program/tbl2asn
 # Sequin not install because it requires X Windows
 # Be aware that EMBL validator changed. Please see http://www.ebi.ac.uk/ena/software/flat-file-validator for further information
 
-ENV PATH="/NGStools/barrnap-0.9/bin:/NGStools/gff3toembl/gff3toembl/scripts:/NGStools/ncbi-blast-2.7.1+/bin:/NGStools/cd-hit-v4.6.8-2017-0621:/NGStools/cd-hit-v4.6.8-2017-0621/cd-hit-auxtools:/NGStools/exonerate-2.2.0-x86_64/bin:/NGStools/prokka/bin:${PATH}" LD_LIBRARY_PATH="/usr/local/lib:$LD_LIBRARY_PATH" PYTHONPATH="/NGStools/gff3toembl/gff3toembl:$PYTHONPATH"
+ENV PATH="/NGStools/prokka/bin:${PATH}"
 
 # Clean
 RUN pip uninstall -y setuptools && apt-get remove -y git python-pip locales && apt-get autoclean -y
