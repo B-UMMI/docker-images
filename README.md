@@ -18,5 +18,6 @@ UMMI docker images that are available from Docker Hub:
 * [SISTR](./sistr_cmd)
 * [Snippy](./snippy_tseemann)
 * [sratoolkit](./fastq-dump)
+* [Stacks](./stacks)
 * [Blast+ for LOBO](./blast)
 * [Ubuntu](./ubuntu_base)
