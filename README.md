@@ -11,6 +11,7 @@ UMMI docker images that are available from Docker Hub:
 * [Circlator](./circlator_sanger-pathogens)
 * [emm_typing](./emm_typing_AdmiralenOla)
 * [Kraken](./kraken_metagenomics)
+* [meningotype](./meningotype)
 * [MIDAS](./midas_metagenomics)
 * [Prokka](./prokka)
 * [rPinecone](./rpinecone)
