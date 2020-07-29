@@ -11,4 +11,4 @@ RUN pip install git+https://github.com/MDU-PHL/meningotype.git
 WORKDIR /data/
 
 ## Default command
-CMD meningotype --test
+CMD meningotype --help
