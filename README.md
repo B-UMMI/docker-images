@@ -1,6 +1,6 @@
-UMMI docker images that are available from Docker Hub:
+UMMI docker images that are available from [Docker Hub](https://hub.docker.com/u/ummidock/)
 
-<https://hub.docker.com/u/ummidock/>
+Dockerfiles are available from [GitHub](https://github.com/B-UMMI/docker-images)
 
 * [abricate](./abricate)
 * [bionode-ncbi](./bionode-ncbi)

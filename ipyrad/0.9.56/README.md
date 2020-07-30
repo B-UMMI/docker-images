@@ -9,7 +9,7 @@ Docker container with [**ipyrad**](https://ipyrad.readthedocs.io/en/latest/) sof
 
 > Interactive assembly and analysis of RAD-seq data sets.
 
-> interactive toolkit for assembly and analysis of restriction-site associated genomic data sets (e.g., RAD, ddRAD, GBS) for population genetic and phylogenetic studies.
+> Interactive toolkit for assembly and analysis of restriction-site associated genomic data sets (e.g., RAD, ddRAD, GBS) for population genetic and phylogenetic studies.
 
 ## Usage
 
