@@ -8,6 +8,8 @@ RUN conda install -y -c conda-forge -c bioconda -c defaults blast=2.7.1 mlst isp
 # Install meningotype
 RUN pip install git+https://github.com/MDU-PHL/meningotype.git
 
+RUN conda clean -y --all
+
 WORKDIR /data/
 
 ## Default command
