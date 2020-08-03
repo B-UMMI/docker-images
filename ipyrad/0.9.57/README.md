@@ -17,11 +17,11 @@ You can download and run this image using the following commands:
 
 ````bash
 # Pull
-docker pull ummidock/ipyrad:0.9.56-01
+docker pull ummidock/ipyrad:0.9.57-01
 
 # Run
 ## Create an initial Assembly params file
-docker run --rm -u $(id -u):$(id -g) -v /local/folder/data:/data/ ummidock/ipyrad:0.9.56-01 sh -c 'cd /data; ipyrad -n run01'
+docker run --rm -u $(id -u):$(id -g) -v /local/folder/data:/data/ ummidock/ipyrad:0.9.57-01 sh -c 'cd /data; ipyrad -n run01'
 ````
 
 For more examples on how to use **ipyrad** please check the [manual](https://ipyrad.readthedocs.io/en/latest/) page.
