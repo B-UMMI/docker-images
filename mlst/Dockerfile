@@ -32,9 +32,8 @@ ENV PATH="/NGStools/mlst/bin:${PATH}"
 #script to update the mlst database
 RUN /NGStools/mlst/scripts/mlst-download_pub_mlst | bash
 RUN rm -r /NGStools/mlst/db/pubmlst/
-RUN mv /NGStools/mlst/scripts/pubmlst /NGStools/mlst/db/
-RUN /NGStools/mlst/scripts/mlst-make_blast_db
-
+RUN mv pubmlst /NGStools/mlst/db/
+RUN cd /NGStools/mlst/scripts && ls  && ./mlst-make_blast_db
 
 # Update Clostridium to Clostridioides
 RUN echo 'cdifficile\tClostridioides\tdifficile' >> /NGStools/mlst/db/scheme_species_map.tab
