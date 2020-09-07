@@ -25,15 +25,17 @@ ENV PATH="/NGStools/ncbi-blast-2.9.0+/bin:/NGStools/any2fasta:${PATH}"
 # --- mlst ----
 RUN git clone https://github.com/tseemann/mlst.git
 ENV PATH="/NGStools/mlst/bin:${PATH}"
-# Update Clostridium to Clostridioides
-RUN echo 'cdifficile\tClostridioides\tdifficile' >> /NGStools/mlst/db/scheme_species_map.tab
 
 # fixing permissions for MLST update
-RUN chmod +x /NGStools/INNUca/Docker/update_mlst_db.sh && chmod o+wr /NGStools/mlst/scripts/ && chmod -R o+wr /NGStools/mlst/db/ && sed -i "s#OUTDIR=pubmlst#OUTDIR=/NGStools/mlst/scripts/pubmlst#1" /NGStools/mlst/scripts/mlst-download_pub_mlst
+#RUN chmod +x /NGStools/INNUca/Docker/update_mlst_db.sh && chmod o+wr /NGStools/mlst/scripts/ && chmod -R o+wr /NGStools/mlst/db/ && sed -i "s#OUTDIR=pubmlst#OUTDIR=/NGStools/mlst/scripts/pubmlst#1" /NGStools/mlst/scripts/mlst-download_pub_mlst
 
 #script to update the mlst database
 RUN /NGStools/mlst/scripts/mlst-download_pub_mlst | bash
 RUN rm -r /NGStools/mlst/db/pubmlst/
 RUN mv /NGStools/mlst/scripts/pubmlst /NGStools/mlst/db/
 RUN /NGStools/mlst/scripts/mlst-make_blast_db
+
+
+# Update Clostridium to Clostridioides
+RUN echo 'cdifficile\tClostridioides\tdifficile' >> /NGStools/mlst/db/scheme_species_map.tab
 
