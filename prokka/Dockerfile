@@ -1,17 +1,18 @@
 FROM ubuntu:16.04
-MAINTAINER Miguel Machado <mpmachado@medicina.ulisboa.pt>
-LABEL version="1.13.3-01"
+MAINTAINER Inês Mendes <cimendes@medicina.ulisboa.pt>
+LABEL version="1.14.5-02"
 
 WORKDIR /NGStools/
 
 # Dependencies
 RUN apt-get update && \
     apt-get upgrade -y perl && \
-    apt-get install -y parallel make wget git python-pip locales && \
-    pip install -U setuptools && \
+    apt-get install -y parallel make wget git locales && \
     locale-gen --purge en_US.UTF-8 && \
     DEBIAN_FRONTEND="noninteractive" dpkg-reconfigure locales && \
     update-locale LANG=en_US.UTF-8 LANGUAGE=en_US.UTF-8 LC_ALL=en_US.UTF-8
+RUN apt-get install -y python python-pip && \
+    pip install setuptools
 
 # Barrnap
 RUN wget https://github.com/tseemann/barrnap/archive/0.9.tar.gz && \
@@ -81,10 +82,10 @@ RUN cpan List::Util && \
     git clone https://github.com/tseemann/prokka.git && \
     prokka/bin/prokka --setupdb
 
-# tbl2asn
-RUN wget ftp://ftp.ncbi.nih.gov/toolbox/ncbi_tools/converters/by_program/tbl2asn/linux.tbl2asn.gz && \
-    gunzip linux.tbl2asn.gz && \
-    mv linux.tbl2asn tbl2asn && \
+# tbl2asn - new version fixes expiration date error
+RUN wget ftp://ftp.ncbi.nih.gov/toolbox/ncbi_tools/converters/by_program/tbl2asn/linux64.tbl2asn.gz && \
+    gunzip linux64.tbl2asn.gz && \
+    mv linux64.tbl2asn tbl2asn && \
     chmod +x tbl2asn && \
     mv tbl2asn /NGStools/prokka/binaries/linux/
 
