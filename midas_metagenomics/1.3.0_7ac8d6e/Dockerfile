@@ -28,7 +28,16 @@ RUN wget -nv https://sourceforge.net/projects/bowtie-bio/files/bowtie2/2.3.2/bow
     cp bowtie2-2.3.2/bowtie2* MIDAS/bin/Linux/ && \
     rm -r bowtie2-2.3.2-linux-x86_64.zip bowtie2-2.3.2/
 
-ENV PYTHONPATH="/NGStools/MIDAS:${PYTHONPATH}" PATH="/NGStools/MIDAS/scripts:${PATH}"
+RUN wget http://eddylab.org/software/hmmer/hmmer-3.3.2.tar.gz && \
+    tar xf hmmer-3.3.2.tar.gz && \
+    cd hmmer-3.3.2 && \
+    ./configure --prefix=/NGStools/hmmer-3.3.2_installation && \
+    make && \
+    make install && \
+    cd ../ && \
+    rm -r hmmer-3.3.2.tar.gz hmmer-3.3.2/
+
+ENV PYTHONPATH="/NGStools/MIDAS:${PYTHONPATH}" PATH="/NGStools/MIDAS/scripts:/NGStools/hmmer-3.3.2_installation/bin:${PATH}"
 
 # Clean
 RUN apt-get remove -y git gcc make bzip2 python-pip wget && apt-get autoclean -y
