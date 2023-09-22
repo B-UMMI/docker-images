@@ -1,59 +1,42 @@
-#USE BLAST BINARIES FROM UMMIDOCK REPO
-FROM ummidock/blast_binaries:2.9.0-binaries
-MAINTAINER Inês Mendes, cimendes@medicina.ulisboa.pt
+FROM ubuntu:22.04
+MAINTAINER UMMI, imm-bioinfo@medicina.ulisboa.pt
 
-WORKDIR /NGStools/
+# Create directory to store files
+WORKDIR /WORKY/
 
-RUN apt-get update && apt-get install -y \
-	git \
-	make \
-	gcc \
-	wget \
-	libxml2-dev \
-	libxslt1-dev \
-	libblas-dev \
-	liblapack-dev \
-	zlib1g-dev \
-	g++ \
-	build-essential
+# Install wget to download files, git to clone repos and Python 3 to install and use chewBBACA
+RUN apt update && apt install -y wget git python3 python3-setuptools
 
-# INSTALL CONDA
-RUN wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
-RUN chmod +x Miniconda3-latest-Linux-x86_64.sh
-RUN ./Miniconda3-latest-Linux-x86_64.sh -b -p /NGStools/miniconda
-ENV PATH="/NGStools/miniconda/bin:$PATH"
-RUN python -m pip install --upgrade pip
+# Install BLAST
+WORKDIR /WORKY/BLAST
+# Download and extract
+RUN wget https://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/2.9.0/ncbi-blast-2.9.0+-x64-linux.tar.gz && \
+	tar -xzvf ncbi-blast-2.9.0+-x64-linux.tar.gz && \
+	rm ncbi-blast-2.9.0+-x64-linux.tar.gz
+# Add BLAST executables to PATH
+ENV PATH="/WORKY/BLAST/ncbi-blast-2.9.0+/bin:${PATH}"
 
-#GET chewBBACA and Prodigal
-RUN git clone https://github.com/hyattpd/Prodigal.git
+# Install MAFFT
+WORKDIR /WORKY/MAFFT
+RUN wget https://mafft.cbrc.jp/alignment/software/mafft_7.520-1_amd64.deb
+# Install
+RUN dpkg -i mafft_7.520-1_amd64.deb
+ENV PATH="/WORKY/MAFFT:${PATH}"
+
+# Install FastTree
+WORKDIR /WORKY/FastTree
+RUN wget http://www.microbesonline.org/fasttree/FastTree
+# Change permissions for executable
+RUN chmod 755 *
+ENV PATH="/WORKY/FastTree:${PATH}"
+
+# INSTALL chewBBACA and dependencies listed in requirements.txt
+WORKDIR /WORKY/chewBBACA
+# Clone chewBBACA repo
 RUN git clone https://github.com/B-UMMI/chewBBACA.git
-
-#INSTALL chewBBACA requirements
-WORKDIR /NGStools/chewBBACA
-ENV LANG C.UTF-8
+WORKDIR /WORKY/chewBBACA/chewBBACA
+# Install chewBBACA and dependencies
 RUN python3 setup.py install
+ENV PATH="/WORKY/chewBBACA/chewBBACA:${PATH}"
 
-#INSTALL PRODIGAL
-WORKDIR /NGStools/Prodigal
-RUN make install
-
-WORKDIR /NGStools/
-
-#install mafft and clustalw2 to run schema evaluator
-RUN wget www.clustal.org/download/current/clustalw-2.1-linux-x86_64-libcppstatic.tar.gz
-RUN tar -zxf clustalw-2.1-linux-x86_64-libcppstatic.tar.gz
-RUN rm clustalw-2.1-linux-x86_64-libcppstatic.tar.gz
-ENV PATH="/NGStools/clustalw-2.1-linux-x86_64-libcppstatic:${PATH}"
-
-RUN apt-get autoclean
-RUN apt-get autoremove
-RUN apt-get clean
-RUN apt-get install -y mafft
-
-#ADD chewBBACA TO PATH
-ENV PATH="/NGStools/chewBBACA:${PATH}"
-ENV PATH="/NGStools/chewBBACA/utils:${PATH}"
-ENV PATH="/NGStools/chewBBACA/allelecall:${PATH}"
-ENV PATH="/NGStools/chewBBACA/createschema:${PATH}"
-ENV PATH="/NGStools/chewBBACA/SchemaEvaluator:${PATH}"
-ENV PATH="/NGStools/chewBBACA/CHEWBBACA_NS:${PATH}"
+WORKDIR /WORKY/

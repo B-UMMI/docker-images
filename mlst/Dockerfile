@@ -3,13 +3,12 @@ MAINTAINER UMMI, imm-bioinfo@medicina.ulisboa.pt
 
 WORKDIR /NGStools/
 
-RUN apt-get update
-
 # -- General Dependencies ---
+RUN apt-get update
 RUN apt-get install -y git wget g++
 
-# -- mlst Dependencies --
-# Blast
+# -- Dependencies --
+# BLAST
 RUN wget ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/2.9.0/ncbi-blast-2.9.0+-x64-linux.tar.gz && \
     tar -xf ncbi-blast-2.9.0+-x64-linux.tar.gz && \
     rm ncbi-blast-2.9.0+-x64-linux.tar.gz

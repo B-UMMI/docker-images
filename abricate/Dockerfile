@@ -1,26 +1,36 @@
-# DOCKERFILE for abricate https://github.com/tseemann/abricate
-FROM ubuntu:16.04
-MAINTAINER Diogo N. Silva, diogosilva@medicina.ulisboa.pt
-
-RUN apt-get update && apt-get -y install \
-	bzip2 \
-	gzip \
-	wget \
-	git
-# git needs to be present to allow DB update
+FROM ubuntu:22.04
+MAINTAINER UMMI, imm-bioinfo@medicina.ulisboa.pt
 
 WORKDIR /NGStools
 
-# INSTALL MINICONDA
-RUN wget https://repo.continuum.io/miniconda/Miniconda2-latest-Linux-x86_64.sh
-RUN chmod +x Miniconda2-latest-Linux-x86_64.sh
-RUN ./Miniconda2-latest-Linux-x86_64.sh -b -p /NGStools/miniconda
-ENV PATH="/NGStools/miniconda/bin:$PATH"
-# Configure channels for bioconda
-RUN conda config --add channels defaults && conda config --add channels conda-forge && conda config --add channels bioconda
+# -- General Dependencies ---
+RUN apt-get update
+RUN apt-get install -y wget g++ bioperl gzip unzip git libjson-perl libtext-csv-perl libpath-tiny-perl liblwp-protocol-https-perl libwww-perl
 
-# INSTALL abricate
-RUN conda install abricate
+# BLAST
+RUN wget ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/2.9.0/ncbi-blast-2.9.0+-x64-linux.tar.gz && \
+    tar -xf ncbi-blast-2.9.0+-x64-linux.tar.gz && \
+    rm ncbi-blast-2.9.0+-x64-linux.tar.gz
+
+# any2fasta
+RUN git clone https://github.com/tseemann/any2fasta.git
+
+# INSTALL Abricate
+RUN git clone https://github.com/tseemann/abricate.git
+# Add BLAST, any2fasta and Abricate to PATH
+ENV PATH="/NGStools/ncbi-blast-2.9.0+/bin:/NGStools/any2fasta:/NGStools/abricate/bin:${PATH}"
 RUN abricate --check && abricate --setupdb
 
-WORKDIR /data/
+# Update DBs
+RUN abricate-get_db --db argannot --force
+RUN abricate-get_db --db card --force
+RUN abricate-get_db --db ecoh --force
+RUN abricate-get_db --db ecoli_vf --force
+# Cannot update megares
+#RUN abricate-get_db --db megares --force
+RUN abricate-get_db --db ncbi --force
+RUN abricate-get_db --db plasmidfinder --force
+RUN abricate-get_db --db resfinder --force
+RUN abricate-get_db --db vfdb --force
+
+WORKDIR /NGStools
