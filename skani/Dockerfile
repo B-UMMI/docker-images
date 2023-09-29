@@ -4,7 +4,7 @@ MAINTAINER UMMI, imm-bioinfo@medicina.ulisboa.pt
 # Create directory to store files
 WORKDIR /WORKY/
 
-# Install wget to download files, git to clone repos and Python 3 to install and use chewBBACA
+# Install wget to download files
 RUN apt update && apt install -y wget
 
 # Download Skani executable
